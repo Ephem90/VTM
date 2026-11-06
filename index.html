@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1b2a41">
+<title>VolleyBall Team Management (VTM)</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <h1>🏐 <span>VTM</span></h1>
+  <nav class="tabs">
+    <button class="tab active" data-tab="courts">Terrains</button>
+    <button class="tab" data-tab="players">Joueurs</button>
+  </nav>
+  <div class="actions">
+    <button id="btn-add" class="icon-btn add" title="Ajouter un joueur" hidden>+</button>
+    <button id="btn-settings" class="icon-btn" title="Paramètres">⚙</button>
+  </div>
+</header>
+
+<main>
+  <section id="tab-courts" class="panel">
+    <div class="toolbar">
+      <div class="group">
+        <button id="court-minus" class="btn sq" title="Supprimer un terrain">−</button>
+        <span id="court-count" class="count"></span>
+        <button id="court-plus" class="btn sq" title="Ajouter un terrain">+</button>
+      </div>
+      <div class="group">
+        <button id="btn-random" class="btn primary">🎲 Aléatoire équitable</button>
+        <button id="btn-strength" class="btn primary"></button>
+      </div>
+    </div>
+    <p id="hint" class="hint">Touchez un joueur puis un autre (ou un joueur non placé) pour les échanger.</p>
+    <div id="courts" class="courts"></div>
+    <div id="dots" class="dots"></div>
+    <div id="bench" class="bench"></div>
+  </section>
+
+  <section id="tab-players" class="panel" hidden>
+    <div id="players" class="players"></div>
+  </section>
+</main>
+
+<div id="modal" class="overlay" hidden></div>
+<div id="toast" class="toast" hidden></div>
+<input type="file" id="file-import" accept=".xml,text/xml,application/xml" hidden>
+<script src="app.js"></script>
+</body>
+</html>
