@@ -38,7 +38,7 @@ const langCodes = () => [...new Set([...Object.keys(VTM_RESOURCES), ...Object.ke
 function initialLang() {
   try { const s = localStorage.getItem(LANG_KEY); if (s && langCodes().includes(s)) return s; } catch (e) {}
   const nav = (navigator.language || 'en').slice(0, 2).toLowerCase();
-  return langCodes().includes(nav) ? nav : 'en';
+  return langCodes().includes(nav) ? nav : 'en'; // browser language if available, otherwise English
 }
 let lang = initialLang();
 function t(key, vars) {
