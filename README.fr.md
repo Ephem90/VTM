@@ -14,6 +14,7 @@ VTM est une application web légère pour gérer des joueurs de volleyball et co
   - Critères toujours présents : **Force, Vitesse, Agilité** (vous pouvez en ajouter dans les paramètres).
   - Positions : **Passeur, Attaquant, Milieu, Tech**. Aucune sélection = peut jouer à toutes les positions.
 - **Import / export** de toute la configuration au format XML.
+- **Multilingue** : français et anglais intégrés, et possibilité d'ajouter votre propre langue depuis l'application (voir [Langues](#langues)).
 - **Installable** sur smartphone (PWA) et utilisable hors-ligne.
 
 ## Lancer l'application
@@ -38,6 +39,25 @@ Pour essayer sur un téléphone connecté au même Wi-Fi, ouvrez `http://<IP-de-
 4. **Paramètres (⚙)** : nombre de joueurs par équipe (1 à 6, 6 par défaut), critères personnalisés, import/export.
 
 S'il y a plus de joueurs actifs que de places, les joueurs en trop sont listés comme *non placés* et sont prioritaires la fois suivante. S'il y en a trop peu, le nombre d'équipes diminue (toujours un nombre pair).
+
+## Langues
+
+Tous les textes visibles sont stockés dans `resources.js`, chacun identifié par une **clé en anglais** (ex. `btn.random`, `toast.generated`). L'anglais est la langue de référence et sert de repli quand une traduction manque. Le code n'appelle que `t('clé')` : aucun texte n'est écrit en dur dans la logique de l'application. Les icônes/emojis ne font **pas** partie des textes traduits : ils sont déclarés une seule fois dans la table `ICONS` de `app.js` et toujours affichés à côté du texte (y compris dans la page de traduction), les traducteurs n'ont donc jamais à les saisir ni à les conserver.
+
+**Changer de langue** : cliquez sur l'icône 🌐 à côté de l'icône des paramètres (⚙) et choisissez **FR**, **EN** ou une langue que vous avez ajoutée. Le choix est mémorisé.
+
+**Ajouter une langue depuis l'application** :
+1. Cliquez sur 🌐 → **Ajouter une langue**. La page de traduction s'ouvre.
+2. Choisissez la **langue source** (n'importe quelle langue déjà disponible).
+3. Saisissez le **code** (2 à 8 lettres, ex. `es`) et le **nom** (ex. `Español`) de la nouvelle langue.
+4. Chaque texte est listé à gauche dans la langue source, avec une zone de saisie en face pour la traduction. Entre les deux, le bouton **➜** copie le texte source dans la zone (pratique quand le texte original peut être conservé). Conservez les variables comme `{n}` telles quelles.
+5. Cliquez sur **Enregistrer la langue** : toute zone laissée vide est remplie avec le texte source, et l'application bascule aussitôt sur la nouvelle langue.
+
+**Modifier une langue** : cliquez sur l'icône ✎ à côté d'une langue dans le menu 🌐. La page de traduction s'ouvre avec les textes actuels préchargés (affichés en face de l'anglais), pour corriger ou reformuler n'importe lequel. Cela fonctionne pour vos propres langues comme pour FR et EN : les modifications des langues intégrées sont enregistrées comme surcharges dans votre navigateur et ne modifient pas `resources.js`.
+
+Les langues ajoutées et les modifications sont stockées dans le navigateur (stockage local) de l'appareil où elles ont été créées ; elles ne font pas partie de la configuration XML.
+
+**Ajouter une langue de façon permanente (développeurs)** : copiez le bloc `en` de `resources.js`, renommez-le avec le code de la nouvelle langue, renseignez `_name` et traduisez les valeurs. Les clés ne doivent pas changer.
 
 ## Import / export
 
@@ -68,7 +88,8 @@ L'application s'ouvre alors en plein écran avec sa propre icône et fonctionne 
 |---------|------|
 | `index.html` | Structure de la page |
 | `style.css` | Styles (responsive, mobile d'abord) |
-| `app.js` | Logique : données, génération des équipes, affichage, import/export XML |
+| `app.js` | Logique : données, génération des équipes, affichage, import/export XML, gestion des langues |
+| `resources.js` | Ressources de langue (FR, EN) : tous les textes, avec des clés en anglais |
 | `manifest.webmanifest`, `icon.svg`, `sw.js` | Installation PWA et mode hors-ligne |
 
 ## Technologie

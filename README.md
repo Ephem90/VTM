@@ -14,6 +14,7 @@ VTM is a lightweight web app to manage volleyball players and build **balanced, 
   - Always available criteria: **Strength, Speed, Agility** (you can add your own in the settings).
   - Positions: **Setter, Hitter, Middle, Tech**. None selected = can play any position.
 - **Import / export** of the whole configuration as XML.
+- **Multilingual**: English and French built in, and you can add your own language from the app (see [Languages](#languages)).
 - **Installable** on a smartphone (PWA) and usable offline.
 
 ## Run it
@@ -38,6 +39,25 @@ To try it on a phone on the same Wi-Fi, open `http://<your-PC-IP>:8080` in the p
 4. **Settings (⚙)**: number of players per team (1–6, default 6), custom criteria, import/export.
 
 If there are more active players than places, the extra players are listed as *unplaced* and get priority next time. If there are too few, the number of teams is reduced (always an even number).
+
+## Languages
+
+All user-visible texts are stored in `resources.js`, each one identified by an **English key** (e.g. `btn.random`, `toast.generated`). English is the reference language and the fallback when a translation is missing. The code only ever calls `t('key')`; no text is hard-coded in the app logic. Icons/emojis are **not** part of the translated texts: they are declared once in the `ICONS` table of `app.js` and always displayed next to the text (including on the translation page), so translators never have to type or keep them.
+
+**Switch language**: click the 🌐 icon next to the settings icon (⚙) and pick **FR**, **EN** or any language you added. The choice is remembered.
+
+**Add a language from the app**:
+1. Click 🌐 → **Add a language**. This opens the translation page.
+2. Choose the **source language** (any language already available).
+3. Enter the **code** (2–8 letters, e.g. `es`) and the **name** (e.g. `Español`) of the new language.
+4. Every text is listed on the left in the source language, with a text box on the right for the translation. Between the two, the **➜** button copies the source text into the box (handy when the original wording can be kept). Keep placeholders such as `{n}` unchanged.
+5. Click **Save language**: any box left empty is filled with the source text, and the app switches to the new language immediately.
+
+**Edit a language**: click the ✎ icon next to a language in the 🌐 menu. The translation page opens with the current texts preloaded (shown against English), so you can fix or reword any of them. This works for your own languages as well as for FR and EN: changes to the built-in ones are saved as overrides in your browser and do not modify `resources.js`.
+
+Custom languages and edits are stored in the browser (local storage) of the device where they were created; they are not part of the XML configuration.
+
+**Add a language permanently (for developers)**: copy the `en` block in `resources.js`, rename it with the new language code, set `_name`, and translate the values. Keys must stay unchanged.
 
 ## Import / export
 
@@ -68,7 +88,8 @@ The app then opens full screen with its own icon and works offline. Remember tha
 |------|------|
 | `index.html` | Page structure |
 | `style.css` | Styles (responsive, mobile first) |
-| `app.js` | Logic: data, team generation, rendering, XML import/export |
+| `app.js` | Logic: data, team generation, rendering, XML import/export, language handling |
+| `resources.js` | Language resources (FR, EN): all texts, keyed in English |
 | `manifest.webmanifest`, `icon.svg`, `sw.js` | PWA install and offline support |
 
 ## Tech

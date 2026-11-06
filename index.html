@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -13,29 +13,31 @@
 <header class="top">
   <h1>🏐 <span>VTM</span></h1>
   <nav class="tabs">
-    <button class="tab active" data-tab="courts">Terrains</button>
-    <button class="tab" data-tab="players">Joueurs</button>
+    <button class="tab active" data-tab="courts" data-i18n="tab.courts"></button>
+    <button class="tab" data-tab="players" data-i18n="tab.players"></button>
   </nav>
   <div class="actions">
-    <button id="btn-add" class="icon-btn add" title="Ajouter un joueur" hidden>+</button>
-    <button id="btn-settings" class="icon-btn" title="Paramètres">⚙</button>
+    <button id="btn-add" class="icon-btn add" data-i18n-title="btn.addPlayer" hidden>+</button>
+    <button id="btn-lang" class="icon-btn" data-i18n-title="btn.language">🌐</button>
+    <button id="btn-settings" class="icon-btn" data-i18n-title="btn.settings">⚙</button>
   </div>
 </header>
+<div id="lang-menu" class="lang-menu" hidden></div>
 
 <main>
   <section id="tab-courts" class="panel">
     <div class="toolbar">
       <div class="group">
-        <button id="court-minus" class="btn sq" title="Supprimer un terrain">−</button>
+        <button id="court-minus" class="btn sq" data-i18n-title="court.remove">−</button>
         <span id="court-count" class="count"></span>
-        <button id="court-plus" class="btn sq" title="Ajouter un terrain">+</button>
+        <button id="court-plus" class="btn sq" data-i18n-title="court.add">+</button>
       </div>
       <div class="group">
-        <button id="btn-random" class="btn primary">🎲 Aléatoire équitable</button>
+        <button id="btn-random" class="btn primary" data-i18n="btn.random"></button>
         <button id="btn-strength" class="btn primary"></button>
       </div>
     </div>
-    <p id="hint" class="hint">Touchez un joueur puis un autre (ou un joueur non placé) pour les échanger.</p>
+    <p id="hint" class="hint" data-i18n="hint.swap"></p>
     <div id="courts" class="courts"></div>
     <div id="dots" class="dots"></div>
     <div id="bench" class="bench"></div>
@@ -44,11 +46,14 @@
   <section id="tab-players" class="panel" hidden>
     <div id="players" class="players"></div>
   </section>
+
+  <section id="tab-translate" class="panel" hidden></section>
 </main>
 
 <div id="modal" class="overlay" hidden></div>
 <div id="toast" class="toast" hidden></div>
 <input type="file" id="file-import" accept=".xml,text/xml,application/xml" hidden>
+<script src="resources.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

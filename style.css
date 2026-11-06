@@ -101,4 +101,25 @@ input.vs::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:v
 .crit{display:flex;gap:6px;margin:4px 0}
 .crit input{flex:1;padding:7px 9px;border:1px solid var(--line);border-radius:8px;font:inherit}
 .stack{display:flex;flex-direction:column;gap:10px}
+/* Langue + traduction */
+.lang-menu{position:fixed;right:12px;top:calc(54px + env(safe-area-inset-top));z-index:40;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.25);padding:6px;display:flex;flex-direction:column;min-width:170px}
+.lang-menu button{background:none;border:0;text-align:left;padding:9px 12px;border-radius:8px;color:var(--ink)}
+.lang-menu button:hover,.lang-menu button.on{background:#eef2f8}
+.lm-row{display:flex}.lm-row>button:first-child{flex:1}
+.lang-menu .lm-edit{color:var(--muted);padding:9px 10px}
+.tr-copy{padding:6px 10px}
+.tr-in{display:flex;align-items:center;gap:6px}.tr-in input{flex:1;min-width:0}
+.ic{display:inline-block}
+@media(max-width:560px){.tr-in{grid-column:1/-1}}
+.lang-menu button.add{border-top:1px solid var(--line);border-radius:0 0 8px 8px;margin-top:4px;color:var(--accent);font-weight:600}
+.tr-page{max-width:900px;margin:auto}
+.tr-head{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.tr-head select{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff}
+.tr-list{background:var(--card);border-radius:12px;padding:8px 12px;margin-top:8px}
+.tr-row{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;padding:5px 0;border-bottom:1px solid var(--line)}
+.tr-row:last-child{border-bottom:0}
+.tr-th{font-weight:700;font-size:.8rem;color:var(--muted)}
+.tr-src{font-size:.88rem;word-break:break-word}
+.tr-row input{width:100%;padding:7px 9px;border:1px solid var(--line);border-radius:8px;font:inherit}
+@media(max-width:560px){.tr-row{grid-template-columns:1fr auto;gap:4px 8px;padding:8px 0}.tr-row input{grid-column:1/-1}.tr-th div:nth-child(3){display:none}}
 .toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#1b2a41;color:#fff;padding:10px 16px;border-radius:20px;z-index:60;font-size:.9rem;max-width:90vw}
